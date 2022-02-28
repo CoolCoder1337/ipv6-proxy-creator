@@ -71,8 +71,8 @@ install_jq() {
 upload_2file() {
   local PASS=$(random)
   zip --password $PASS proxy.zip proxy.txt
-  JSON=$(curl -F "file=@proxy.zip" https://file.io)
-  URL=$(echo "$JSON" | jq --raw-output '.link')
+  JSON=$(curl -F "file=@proxy.zip" https://api.anonfiles.com/upload)
+  URL=$(echo "$JSON" | jq)
 
   echo "Proxy is ready! Format IP:PORT:LOGIN:PASS"
   echo "Download zip archive from: ${URL}"
